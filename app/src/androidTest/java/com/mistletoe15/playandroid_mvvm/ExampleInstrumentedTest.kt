@@ -21,4 +21,7 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.mistletoe15.playandroid_mvvm", appContext.packageName)
     }
+    fun testApiUsable(){
+
+    }
 }
