@@ -1,11 +1,10 @@
-package com.mistletoe15.playandroid_mvvm.ui
+package com.mistletoe15.playandroid_mvvm.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.mistletoe15.playandroid_mvvm.R
 import com.mistletoe15.playandroid_mvvm.databinding.ActivityMainBinding

@@ -1,14 +1,16 @@
 package com.mistletoe15.playandroid_mvvm.ui.adapter
+import android.content.Intent
 import android.graphics.Bitmap
+import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.mistletoe15.playandroid_mvvm.bean.HomeBannerBean
+import com.mistletoe15.playandroid_mvvm.ui.activity.WebViewPage
 import com.mistletoe15.playandroid_mvvm.utils.ViewUtil.getHttpBitmap
 import com.mistletoe15.playandroid_mvvm.utils.doAsyncJobThen2UI
 import com.youth.banner.adapter.BannerAdapter
-import kotlinx.coroutines.Job
-
 /**
  * Created by Mistletoe on 2020/6/2
  **/
@@ -30,7 +32,13 @@ class BannerImageAdapter(dataList:List<HomeBannerBean>?) : BannerAdapter<HomeBan
         doAsyncJobThen2UI({
             bmp = getHttpBitmap(data?.imagePath)
         },{
-            (holder?.itemView as ImageView).setImageBitmap(bmp)
+            (holder?.itemView as ImageView).apply {
+                setImageBitmap(bmp)
+                 val intent = Intent(context,  WebViewPage::class.java).apply {
+                     putExtra("url",data?.url)
+                 }
+                setOnClickListener{ startActivity(context,intent, Bundle())}
+            }
         })
     }
 
