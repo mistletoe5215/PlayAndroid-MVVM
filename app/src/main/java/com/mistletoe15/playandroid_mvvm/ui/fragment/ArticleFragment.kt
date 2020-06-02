@@ -1,6 +1,7 @@
 package com.mistletoe15.playandroid_mvvm.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.google.gson.Gson
 import com.mistletoe15.playandroid_mvvm.R
 import com.mistletoe15.playandroid_mvvm.databinding.FragmentArticleBinding
 import com.mistletoe15.playandroid_mvvm.ui.adapter.BannerImageAdapter
+import com.mistletoe15.playandroid_mvvm.view_model.HomeArticleViewModel
 import com.mistletoe15.playandroid_mvvm.view_model.HomeBannerViewModel
 import com.youth.banner.indicator.CircleIndicator
 import kotlinx.android.synthetic.main.fragment_article.*
@@ -24,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_article.*
 class ArticleFragment : Fragment() {
     var  mBinding:FragmentArticleBinding? =null
     private lateinit var homeBannerViewModel: HomeBannerViewModel
+    private lateinit var homeArticleViewModel: HomeArticleViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -38,7 +41,7 @@ class ArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addHomeBanner()
-
+        addArticleList()
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -57,6 +60,7 @@ class ArticleFragment : Fragment() {
                 }
             }
     }
+    //banner初始化
     private fun addHomeBanner(){
         homeBannerViewModel =  ViewModelProvider(this).get( HomeBannerViewModel::class.java)
         homeBannerViewModel.getHomeBannerList()
@@ -66,6 +70,13 @@ class ArticleFragment : Fragment() {
                 .setIndicator( CircleIndicator(context))
                 .start()
         })
-
+    }
+    //文章列表初始化
+    private fun addArticleList(){
+        homeArticleViewModel =  ViewModelProvider(this).get( HomeArticleViewModel::class.java)
+        homeArticleViewModel.getHomeBannerList(1)
+        homeArticleViewModel.articleList.observe(viewLifecycleOwner, Observer {
+            Log.i("M",it.datas.toString())
+        })
     }
 }

@@ -63,4 +63,6 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     implementation project(path: ':architecture')
     kapt 'com.android.databinding:compiler:3.1.4'
+    //Android paging架构
+    implementation 'androidx.paging:paging-runtime:2.1.2'
 }

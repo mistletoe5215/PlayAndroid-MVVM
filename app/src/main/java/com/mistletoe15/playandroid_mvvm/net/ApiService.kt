@@ -1,7 +1,6 @@
 package com.mistletoe15.playandroid_mvvm.net
-
-import com.mistletoe15.playandroid_mvvm.bean.HomeArticleBean
 import com.mistletoe15.playandroid_mvvm.bean.HomeBannerBean
+import com.mistletoe15.playandroid_mvvm.bean.HomePageArticleBean
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,5 +12,5 @@ interface ApiService {
     @GET(BaseURL.BANNER_TAIL_URL)
     suspend fun getHomeBannerList():BaseResp<List<HomeBannerBean>>
     @GET("article/list/{pageIndex}/json")
-    suspend fun getArticleListById(@Path("pageIndex") pageIndex:Int):BaseResp<List<HomeArticleBean>>
+    suspend fun getArticleListById(@Path("pageIndex") pageIndex:Int):BaseResp<HomePageArticleBean>
 }

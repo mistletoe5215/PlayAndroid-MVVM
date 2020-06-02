@@ -2,13 +2,21 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-<FrameLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ArticleFragment">
     <com.youth.banner.Banner
+        android:layout_alignParentTop="true"
         android:id="@+id/my_article_banner"
         android:layout_width="match_parent"
         android:layout_height="160dp" />
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/article_rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_article_banner" />
+</RelativeLayout>
 </layout>

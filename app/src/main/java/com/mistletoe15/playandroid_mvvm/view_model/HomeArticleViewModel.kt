@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mistletoe15.playandroid_mvvm.bean.HomeArticleBean
+import com.mistletoe15.playandroid_mvvm.bean.HomePageArticleBean
 import com.mistletoe15.playandroid_mvvm.net.ApiService
 import com.mistletoe15.playandroid_mvvm.net.RetrofitFactory
 import com.mistletoe15.playandroid_mvvm.net.handled
@@ -16,7 +17,7 @@ import kotlinx.coroutines.withContext
  * Created by Mistletoe on 2020/5/29
  **/
 class HomeArticleViewModel: ViewModel() {
-    var articleList = MutableLiveData<List<HomeArticleBean>>()
+    var articleList = MutableLiveData<HomePageArticleBean>()
     fun getHomeBannerList(pageIndex:Int) {
         viewModelScope.launch {
             try {
