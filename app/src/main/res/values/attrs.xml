@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <declare-styleable name="LinearGradientLayer">
+        <attr format="reference" name="LinearGradientLayerStartColor"/>
+        <attr format="reference" name="LinearGradientLayerEndColor"/>
+        <attr format="boolean" name="LinearGradientLayerIsHorizontal"/>
+    </declare-styleable>
+</resources>

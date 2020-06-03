@@ -2,9 +2,12 @@ package com.mistletoe15.playandroid_mvvm.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.webkit.WebViewClient
+import android.util.Log
+import android.webkit.WebChromeClient
+import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import com.mistletoe15.playandroid_mvvm.R
 import com.mistletoe15.playandroid_mvvm.databinding.ActivityWebViewBinding
 
@@ -21,7 +24,12 @@ class WebViewPage : AppCompatActivity(){
         if(intent?.extras?.containsKey("url")!!){
             mBinding?.webView?.apply {
                 settings.javaScriptEnabled = true
-                webViewClient = WebViewClient()
+                webChromeClient = object : WebChromeClient() {
+                    override fun onProgressChanged(view: WebView, newProgress: Int) {
+                        super.onProgressChanged(view, newProgress)
+                        //TODO:优化加载网页白屏
+                    }
+                }
                 loadUrl(intent?.extras?.getString("url"))
             }
         }
