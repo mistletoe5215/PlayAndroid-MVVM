@@ -65,4 +65,5 @@ dependencies {
     kapt 'com.android.databinding:compiler:3.1.4'
     //Android paging架构
     implementation 'androidx.paging:paging-runtime:2.1.2'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 }

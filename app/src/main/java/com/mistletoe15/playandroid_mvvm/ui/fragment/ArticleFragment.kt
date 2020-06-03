@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.mistletoe15.playandroid_mvvm.R
 import com.mistletoe15.playandroid_mvvm.databinding.FragmentArticleBinding
 import com.mistletoe15.playandroid_mvvm.ui.adapter.BannerImageAdapter
@@ -17,6 +19,8 @@ import com.mistletoe15.playandroid_mvvm.vm.HomeArticlePageViewModel
 import com.mistletoe15.playandroid_mvvm.vm.HomeBannerViewModel
 import com.youth.banner.indicator.CircleIndicator
 import kotlinx.android.synthetic.main.fragment_article.*
+
+
 /**
  * A simple [Fragment] subclass.
  * Use the [ArticleFragment.newInstance] factory method to
@@ -80,7 +84,13 @@ class ArticleFragment : Fragment() {
         homeArticlePageViewModel.livePagedListBuilder.observe(viewLifecycleOwner, Observer {
             articleAdapter.submitList(it)
         })
-        /*TODO:刷新*/
-       // homeArticlePageViewModel.livePagedListBuilder.value?.dataSource?.invalidate()
+        article_swipe_refresh.setColorSchemeResources(R.color.colorAccent)
+        article_swipe_refresh.setOnRefreshListener(OnRefreshListener {
+            homeArticlePageViewModel.livePagedListBuilder.value?.dataSource?.invalidate()
+            if(article_swipe_refresh.isRefreshing){
+                article_swipe_refresh.isRefreshing = false
+                Toast.makeText(activity,"已更新...",Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

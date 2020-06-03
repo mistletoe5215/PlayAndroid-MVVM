@@ -11,6 +11,11 @@
         android:id="@+id/my_article_banner"
         android:layout_width="match_parent"
         android:layout_height="160dp" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_below="@id/my_article_banner"
+        android:id="@+id/article_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <androidx.recyclerview.widget.RecyclerView
         android:background="#EEF1F6"
         android:paddingBottom="10dp"
@@ -18,6 +23,7 @@
         android:id="@+id/article_rv_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/my_article_banner" />
+       />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>
 </layout>
