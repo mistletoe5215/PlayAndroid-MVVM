@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.mistletoe15.playandroid_mvvm.bean.HomeBannerBean
+import com.mistletoe15.playandroid_mvvm.data.bean.HomeBannerBean
 import com.mistletoe15.playandroid_mvvm.ui.activity.WebViewPage
 import com.mistletoe15.playandroid_mvvm.utils.ViewUtil.getHttpBitmap
 import com.mistletoe15.playandroid_mvvm.utils.doAsyncJobThen2UI

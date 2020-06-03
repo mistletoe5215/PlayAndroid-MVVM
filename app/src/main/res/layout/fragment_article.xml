@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="160dp" />
     <androidx.recyclerview.widget.RecyclerView
+        android:background="#EEF1F6"
         android:paddingBottom="10dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/article_rv_list"

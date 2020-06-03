@@ -1,4 +1,4 @@
-package com.mistletoe15.playandroid_mvvm.net
+package com.mistletoe15.playandroid_mvvm.data.net
 
 import android.util.Log
 import com.google.gson.Gson

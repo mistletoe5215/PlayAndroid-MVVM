@@ -1,6 +1,6 @@
-package com.mistletoe15.playandroid_mvvm.net
-import com.mistletoe15.playandroid_mvvm.bean.HomeBannerBean
-import com.mistletoe15.playandroid_mvvm.bean.HomePageArticleBean
+package com.mistletoe15.playandroid_mvvm.data.net
+import com.mistletoe15.playandroid_mvvm.data.bean.HomeBannerBean
+import com.mistletoe15.playandroid_mvvm.data.bean.HomePageArticleBean
 import retrofit2.http.GET
 import retrofit2.http.Path
 

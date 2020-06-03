@@ -1,4 +1,4 @@
-package com.mistletoe15.playandroid_mvvm.bean
+package com.mistletoe15.playandroid_mvvm.data.bean
 
 /**
  * 首页banner item 内容实体bean

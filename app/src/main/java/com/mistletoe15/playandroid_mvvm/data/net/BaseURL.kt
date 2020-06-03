@@ -1,4 +1,4 @@
-package com.mistletoe15.playandroid_mvvm.net
+package com.mistletoe15.playandroid_mvvm.data.net
 
 /**
  * Created by Mistletoe on 2020/5/29

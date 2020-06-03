@@ -1,7 +1,6 @@
 package com.mistletoe15.playandroid_mvvm.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,24 +8,25 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mistletoe15.playandroid_mvvm.R
 import com.mistletoe15.playandroid_mvvm.databinding.FragmentArticleBinding
 import com.mistletoe15.playandroid_mvvm.ui.adapter.BannerImageAdapter
-import com.mistletoe15.playandroid_mvvm.view_model.HomeArticleViewModel
-import com.mistletoe15.playandroid_mvvm.view_model.HomeBannerViewModel
+import com.mistletoe15.playandroid_mvvm.ui.adapter.HomeArticleAdapter
+import com.mistletoe15.playandroid_mvvm.vm.HomeArticlePageViewModel
+import com.mistletoe15.playandroid_mvvm.vm.HomeBannerViewModel
 import com.youth.banner.indicator.CircleIndicator
 import kotlinx.android.synthetic.main.fragment_article.*
-
 /**
  * A simple [Fragment] subclass.
  * Use the [ArticleFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 class ArticleFragment : Fragment() {
-    var  mBinding:FragmentArticleBinding? =null
+    private var  mBinding:FragmentArticleBinding? =null
     private lateinit var homeBannerViewModel: HomeBannerViewModel
-    private lateinit var homeArticleViewModel: HomeArticleViewModel
+    private lateinit var homeArticlePageViewModel: HomeArticlePageViewModel
+    private lateinit var articleAdapter: HomeArticleAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -53,7 +53,7 @@ class ArticleFragment : Fragment() {
          * @return A new instance of fragment ArticleFragment.
          */
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             ArticleFragment().apply {
                 arguments = Bundle().apply {
 
@@ -73,10 +73,14 @@ class ArticleFragment : Fragment() {
     }
     //文章列表初始化
     private fun addArticleList(){
-        homeArticleViewModel =  ViewModelProvider(this).get( HomeArticleViewModel::class.java)
-        homeArticleViewModel.getHomeBannerList(1)
-        homeArticleViewModel.articleList.observe(viewLifecycleOwner, Observer {
-            Log.i("M",it.datas.toString())
+        homeArticlePageViewModel =  ViewModelProvider(this).get(HomeArticlePageViewModel::class.java)
+        articleAdapter = HomeArticleAdapter()
+        article_rv_list.layoutManager = LinearLayoutManager(context)
+        article_rv_list.adapter =  articleAdapter
+        homeArticlePageViewModel.livePagedListBuilder.observe(viewLifecycleOwner, Observer {
+            articleAdapter.submitList(it)
         })
+        /*TODO:刷新*/
+       // homeArticlePageViewModel.livePagedListBuilder.value?.dataSource?.invalidate()
     }
 }

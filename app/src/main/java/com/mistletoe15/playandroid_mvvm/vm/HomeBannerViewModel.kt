@@ -1,13 +1,13 @@
-package com.mistletoe15.playandroid_mvvm.view_model
+package com.mistletoe15.playandroid_mvvm.vm
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mistletoe15.playandroid_mvvm.bean.HomeBannerBean
-import com.mistletoe15.playandroid_mvvm.net.ApiService
-import com.mistletoe15.playandroid_mvvm.net.RetrofitFactory
-import com.mistletoe15.playandroid_mvvm.net.handled
+import com.mistletoe15.playandroid_mvvm.data.bean.HomeBannerBean
+import com.mistletoe15.playandroid_mvvm.data.net.ApiService
+import com.mistletoe15.playandroid_mvvm.data.net.RetrofitFactory
+import com.mistletoe15.playandroid_mvvm.data.net.handled
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
