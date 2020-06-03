@@ -11,7 +11,7 @@ import com.mistletoe15.playandroid_mvvm.data.paging.article.ArticlePageKeyDataSo
 class HomeArticlePageViewModel:ViewModel() {
     val livePagedListBuilder = LivePagedListBuilder(
         ArticlePageKeyDataSourceFactory(), PagedList.Config.Builder()
-        .setPageSize(10)
+        .setPageSize(20)
         .setEnablePlaceholders(true)
         .setInitialLoadSizeHint(20)
         .build()).build()

@@ -17,9 +17,9 @@ class ArticleDataSource: PageKeyedDataSource<Int, HomeArticleBean>() {
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, HomeArticleBean>) {
         job = GlobalScope.launch (Dispatchers.IO) {
             val articleList =RetrofitFactory.instance.getService(ApiService::class.java)
-                .getArticleListById(1).handled().datas
+                .getArticleListById(0).handled().datas
             launch(Dispatchers.Main) {
-                callback.onResult(articleList, 1, 2)
+                callback.onResult(articleList, 0, 1)
                 job.cancel()
             }
         }
@@ -37,12 +37,14 @@ class ArticleDataSource: PageKeyedDataSource<Int, HomeArticleBean>() {
     }
    //前一页加载
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, HomeArticleBean>) {
-       job = GlobalScope.launch (Dispatchers.IO) {
-           val articleList = RetrofitFactory.instance.getService(ApiService::class.java)
-               .getArticleListById(params.key).handled().datas
-           launch(Dispatchers.Main) {
-               callback.onResult(articleList, params.key-1)
-               job.cancel()
+       if(params.key > 0){
+           job = GlobalScope.launch (Dispatchers.IO) {
+               val articleList = RetrofitFactory.instance.getService(ApiService::class.java)
+                   .getArticleListById(params.key).handled().datas
+               launch(Dispatchers.Main) {
+                   callback.onResult(articleList, params.key-1)
+                   job.cancel()
+               }
            }
        }
     }
