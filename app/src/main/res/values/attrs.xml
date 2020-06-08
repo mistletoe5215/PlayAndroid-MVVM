@@ -5,4 +5,12 @@
         <attr format="reference" name="LinearGradientLayerEndColor"/>
         <attr format="boolean" name="LinearGradientLayerIsHorizontal"/>
     </declare-styleable>
+    <declare-styleable name="HeaderView">
+        <attr format="reference" name="BgColor"/>
+        <attr format="string" name="Title"/>
+        <attr format="boolean" name="hasLeftView"/>
+        <attr format="boolean" name="hasRightView"/>
+        <attr format="reference" name="LeftView"/>
+        <attr format="reference" name="RightView"/>
+    </declare-styleable>
 </resources>

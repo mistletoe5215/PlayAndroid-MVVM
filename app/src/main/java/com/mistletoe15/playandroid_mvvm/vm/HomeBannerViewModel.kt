@@ -8,6 +8,7 @@ import com.mistletoe15.playandroid_mvvm.data.bean.HomeBannerBean
 import com.mistletoe15.playandroid_mvvm.data.net.ApiService
 import com.mistletoe15.playandroid_mvvm.data.net.RetrofitFactory
 import com.mistletoe15.playandroid_mvvm.data.net.handled
+import com.mistletoe15.playandroid_mvvm.data.repository.DataRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,18 +18,5 @@ import kotlinx.coroutines.withContext
  **/
 class HomeBannerViewModel:ViewModel() {
     var bannerList = MutableLiveData<List<HomeBannerBean>>()
-    fun getHomeBannerList() {
-        viewModelScope.launch {
-            try {
-                val data = withContext(Dispatchers.IO) {
-                    RetrofitFactory.instance.getService(ApiService::class.java)
-                        .getHomeBannerList().handled()
-                }
-                bannerList.value = data
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Log.i("请求失败", "${e.message}")
-            }
-        }
-    }
+    fun getHomeBannerList() = DataRepository.instance.getHomeBannerList(this)
 }

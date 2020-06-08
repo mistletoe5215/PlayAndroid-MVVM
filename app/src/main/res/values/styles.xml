@@ -20,4 +20,16 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/Animation_Activity</item>
     </style>
+    <style name="TitleBackgroundColor">
+        <item name="android:background">@color/design_default_color_primary</item>
+    </style>
+    <style name="TitleStyle" parent="Theme.AppCompat.Light.NoActionBar" >
+             <item name="android:windowTitleSize">40dip</item>
+             <item name="android:windowTitleBackgroundStyle">@style/TitleBackgroundColor</item>
+    </style>
+    <style name="header_text">
+        <item name="android:textSize">18dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
