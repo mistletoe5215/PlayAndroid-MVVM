@@ -11,13 +11,13 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mistletoe15.playandroid_mvvm.R
-import com.mistletoe15.playandroid_mvvm.data.bean.HomeArticleBean
+import com.mistletoe15.playandroid_mvvm.data.bean.HomeArticleModel
 import com.mistletoe15.playandroid_mvvm.ui.activity.WebViewPage
 
 /**
  * Created by Mistletoe on 2020/6/3
  **/
-class HomeArticleAdapter : PagedListAdapter<HomeArticleBean, HomeArticleAdapter.HomeArticleViewHolder>(DIFF_CALLBACK) {
+class HomeArticleAdapter : PagedListAdapter<HomeArticleModel, HomeArticleAdapter.HomeArticleViewHolder>(DIFF_CALLBACK) {
     inner class HomeArticleViewHolder(itemLayout: RelativeLayout) : RecyclerView.ViewHolder(itemLayout){
         val titleText: TextView = itemLayout.findViewById(R.id.article_tv_title)
         val niceDateText:TextView = itemLayout.findViewById(R.id.article_tv_nice_date)
@@ -25,11 +25,11 @@ class HomeArticleAdapter : PagedListAdapter<HomeArticleBean, HomeArticleAdapter.
     }
     companion object {
         private val DIFF_CALLBACK = object :
-            DiffUtil.ItemCallback<HomeArticleBean>() {
+            DiffUtil.ItemCallback<HomeArticleModel>() {
             // Article details may have changed if reloaded from the net,
             // but ID is fixed.
-            override fun areItemsTheSame(oldArticle:  HomeArticleBean, newArticle:  HomeArticleBean) = oldArticle.id == newArticle.id
-            override fun areContentsTheSame(oldArticle:  HomeArticleBean, newArticle:  HomeArticleBean) = oldArticle == newArticle
+            override fun areItemsTheSame(oldArticle:  HomeArticleModel, newArticle:  HomeArticleModel) = oldArticle.id == newArticle.id
+            override fun areContentsTheSame(oldArticle:  HomeArticleModel, newArticle:  HomeArticleModel) = oldArticle == newArticle
         }
     }
 
@@ -39,7 +39,7 @@ class HomeArticleAdapter : PagedListAdapter<HomeArticleBean, HomeArticleAdapter.
     }
 
     override fun onBindViewHolder(holder: HomeArticleViewHolder, position: Int) {
-        val article: HomeArticleBean? = getItem(position)
+        val article: HomeArticleModel? = getItem(position)
         holder.apply {
             titleText.text = article?.title
             niceDateText.text = article?.niceDate

@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable
 /**
  * Created by Mistletoe on 2020/6/8
  **/
-data  class HeaderViewConfigBean (
+data  class HeaderViewConfigModel (
      var title: String = "",
      var bgColor:Int = 0,
      var enableLeft :Boolean = false,

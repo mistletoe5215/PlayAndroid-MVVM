@@ -1,16 +1,19 @@
 package com.mistletoe15.playandroid_mvvm.data.repository
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import com.mistletoe15.playandroid_mvvm.R
-import com.mistletoe15.playandroid_mvvm.data.bean.HeaderViewConfigBean
+import com.mistletoe15.playandroid_mvvm.data.bean.HeaderViewConfigModel
+import com.mistletoe15.playandroid_mvvm.data.bean.HomeVideoViewConfigModel
 import com.mistletoe15.playandroid_mvvm.data.net.ApiService
 import com.mistletoe15.playandroid_mvvm.data.net.RetrofitFactory
 import com.mistletoe15.playandroid_mvvm.data.net.handled
 import com.mistletoe15.playandroid_mvvm.vm.HeaderViewModel
 import com.mistletoe15.playandroid_mvvm.vm.HomeBannerViewModel
+import com.mistletoe15.playandroid_mvvm.vm.MyHomeVideoViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -25,7 +28,7 @@ class DataRepository private constructor() {
         }
     }
     fun getHomeHeaderConfig(context:Context,mHeaderViewModel: HeaderViewModel){
-        mHeaderViewModel.headerConfig.value = HeaderViewConfigBean(
+        mHeaderViewModel.headerConfig.value = HeaderViewConfigModel(
             context.resources.getString(R.string.app_name) ,
             context.resources.getColor(R.color.transparent),
             enableLeft = true,
@@ -53,5 +56,8 @@ class DataRepository private constructor() {
                 Log.i("请求失败", "${e.message}")
             }
         }
+    }
+    fun initAndSetVideoConfig(myHomeVideoViewModel: MyHomeVideoViewModel){
+        myHomeVideoViewModel.homeVideoConfig.value = HomeVideoViewConfigModel("android.resource://com.mistletoe15.playandroid_mvvm/${R.raw.ggz}")
     }
 }

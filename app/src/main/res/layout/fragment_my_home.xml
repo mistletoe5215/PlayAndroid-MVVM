@@ -6,9 +6,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragment.MyHomeFragment">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/my_home_part" />
+       <com.mistletoe15.playandroid_mvvm.ui.widget.MVideoView
+           android:id="@+id/my_home_video_view"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
 </FrameLayout>
 </layout>

@@ -4,7 +4,7 @@ package com.mistletoe15.playandroid_mvvm.data.bean
  * 首页文章 item 内容实体bean
  * Created by Mistletoe on 2020/5/29
  **/
-data class HomeArticleBean(
+data class HomeArticleModel(
     var apkLink: String = "",
     var audit: Int = 1,
     var author: String = "",

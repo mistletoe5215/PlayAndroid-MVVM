@@ -4,7 +4,7 @@ package com.mistletoe15.playandroid_mvvm.data.bean
  * 首页banner item 内容实体bean
  * Created by Mistletoe on 2020/5/29
  **/
- data class HomeBannerBean(
+ data class HomeBannerModel(
     var desc:String = "",
     var id:Int=29,
     var imagePath:String="",

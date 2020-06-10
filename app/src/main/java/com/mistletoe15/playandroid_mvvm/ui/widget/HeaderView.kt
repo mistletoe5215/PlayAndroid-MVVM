@@ -8,7 +8,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.mistletoe15.architecture.util.DeviceUtil
 import com.mistletoe15.playandroid_mvvm.R
-import com.mistletoe15.playandroid_mvvm.data.bean.HeaderViewConfigBean
+import com.mistletoe15.playandroid_mvvm.data.bean.HeaderViewConfigModel
 
 /**
  * Created by Mistletoe on 2020/6/8
@@ -70,7 +70,7 @@ class HeaderView(context: Context?) : RelativeLayout(context) {
             }
         }
     }
-    fun setHeaderConfig(headerConfig: HeaderViewConfigBean?):HeaderView{
+    fun setHeaderConfig(headerConfig: HeaderViewConfigModel?):HeaderView{
          headerConfig?.apply {
              mLeftClickListener = onLeftViewClickListener
              mRightClickListener = onRightViewClickListener

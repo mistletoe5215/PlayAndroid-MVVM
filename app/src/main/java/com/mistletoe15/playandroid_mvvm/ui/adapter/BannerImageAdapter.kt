@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.mistletoe15.playandroid_mvvm.data.bean.HomeBannerBean
+import com.mistletoe15.playandroid_mvvm.data.bean.HomeBannerModel
 import com.mistletoe15.playandroid_mvvm.ui.activity.WebViewPage
 import com.mistletoe15.playandroid_mvvm.utils.ViewUtil.getHttpBitmap
 import com.mistletoe15.playandroid_mvvm.utils.doAsyncJobThen2UI
@@ -14,7 +14,7 @@ import com.youth.banner.adapter.BannerAdapter
 /**
  * Created by Mistletoe on 2020/6/2
  **/
-class BannerImageAdapter(dataList:List<HomeBannerBean>?) : BannerAdapter<HomeBannerBean, BannerImageAdapter.BannerViewHolder>(dataList) {
+class BannerImageAdapter(dataList:List<HomeBannerModel>?) : BannerAdapter<HomeBannerModel, BannerImageAdapter.BannerViewHolder>(dataList) {
      inner class BannerViewHolder(itemView: ImageView) : RecyclerView.ViewHolder(itemView)
      override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BannerViewHolder {
          val imageView = ImageView(parent?.context)
@@ -27,7 +27,7 @@ class BannerImageAdapter(dataList:List<HomeBannerBean>?) : BannerAdapter<HomeBan
          return BannerViewHolder(imageView)
     }
 
-    override fun onBindView(holder: BannerViewHolder?, data: HomeBannerBean?, position: Int, size: Int) {
+    override fun onBindView(holder: BannerViewHolder?, data: HomeBannerModel?, position: Int, size: Int) {
         var bmp:Bitmap? = null
         doAsyncJobThen2UI({
             bmp = getHttpBitmap(data?.imagePath)
