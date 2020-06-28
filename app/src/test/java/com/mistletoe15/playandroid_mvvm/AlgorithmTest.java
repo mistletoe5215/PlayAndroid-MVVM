@@ -27,7 +27,8 @@ public class AlgorithmTest {
             head = head.next;
         }
        //反转链表
-       Node reverseHead = reverseNode(n1);
+       //Node reverseHead = reverseNode(n1);
+        Node reverseHead = reverseNode2(n1);
         while (reverseHead!=null){
             System.out.println(reverseHead.toString());
             reverseHead = reverseHead.next;
@@ -42,6 +43,18 @@ public class AlgorithmTest {
         temp.next = head;
         head.next = null;
         return newNode;
+    }
+    private Node reverseNode2(Node head){
+        Node pre = null;
+        Node next;
+       while (head!=null){
+          next = head.next;
+          head.next = pre;
+          pre = head;
+          head = next;
+
+        }
+       return pre;
     }
     @Test
     public void jumpStageTest(){
@@ -84,5 +97,40 @@ public class AlgorithmTest {
     }
     private boolean isPalindrome(int num){
         return  num == reverseNum(num);
+    }
+    @Test
+    public void middleSearchTest(){
+           int[] array = {1,5,17,8,3};
+           int[] _sortArray =  bubbleSort(array);
+           int target = 17;
+           System.out.println(target+"下标是："+findIndexUseMiddleSearch(_sortArray,target,0,array.length -1));
+    }
+    private int findIndexUseMiddleSearch(int[] array,int target,int low,int high){
+        if(target < array[low] || target > array[high]|| low > high){
+            return  -1;
+        }
+        int middle = (low+high)/2;
+        if(array[middle] > target){
+            return  findIndexUseMiddleSearch(array,target,low,middle -1);
+        }else if(array[middle] < target){
+            return  findIndexUseMiddleSearch(array,target,middle +1,high);
+        }else{
+            return  middle;
+        }
+    }
+    private int[] bubbleSort(int[] array){
+        if(array.length == 0|| array.length ==1){
+            return  array;
+        }
+        for (int i = 0; i < array.length -1; i++) {
+            for (int j = 0; j < array.length -1; j++) {
+                if(array[j+1] < array[j]){
+                    int temp  = array[j+1];
+                    array[j+1] =  array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+        return  array;
     }
 }
