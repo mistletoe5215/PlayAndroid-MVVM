@@ -77,13 +77,11 @@ class ArticleFragment : Fragment() {
         //这个请求失败的话就显示失败？？？考虑多个接口errorMessage的observer
         homeBannerViewModel.errorMessage.observe(viewLifecycleOwner, Observer {
             if(it!=""){
-                val ret = article_failed_view.setFailedImage(context?.resources?.getDrawable(R.drawable.load_failed)!!).setFailedText("再试一次").setOnRetryAction {
+                article_failed_view.setFailedImage(context?.resources?.getDrawable(R.drawable.load_failed)!!).setFailedText("再试一次").setOnRetryAction {
                     homeBannerViewModel.getHomeBannerList()
-                }.emit()
-                if(ret){
-                    article_view_container.visibility = View.GONE
-                    article_failed_view.visibility = View.VISIBLE
                 }
+                article_view_container.visibility = View.GONE
+                article_failed_view.visibility = View.VISIBLE
                 Toast.makeText(context,it,Toast.LENGTH_SHORT).show()
             }
         })
