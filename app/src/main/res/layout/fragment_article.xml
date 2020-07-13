@@ -6,32 +6,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ArticleFragment">
-    <com.youth.banner.Banner
-        android:layout_alignParentTop="true"
-        android:id="@+id/my_article_banner"
+    <com.mistletoe15.playandroid_mvvm.ui.widget.LoadingFailedView
+        android:id="@+id/article_failed_view"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="160dp" />
-    <com.mistletoe15.playandroid_mvvm.ui.widget.LinearGradientLayer
+        android:layout_height="match_parent"/>
+    <RelativeLayout
+        android:id="@+id/article_view_container"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_alignBottom="@+id/my_article_banner"
-        app:LinearGradientLayerStartColor="@color/transparent"
-        app:LinearGradientLayerEndColor="@color/colorMainBg"
-        app:LinearGradientLayerIsHorizontal="false" />
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_below="@id/my_article_banner"
-        android:id="@+id/article_swipe_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="8dp"
-        android:background="@color/colorMainBg"
-        android:paddingBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/article_rv_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent">
+        <com.youth.banner.Banner
+            android:layout_alignParentTop="true"
+            android:id="@+id/my_article_banner"
+            android:layout_width="match_parent"
+            android:layout_height="160dp" />
+        <com.mistletoe15.playandroid_mvvm.ui.widget.LinearGradientLayer
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_alignBottom="@+id/my_article_banner"
+            app:LinearGradientLayerStartColor="@color/transparent"
+            app:LinearGradientLayerEndColor="@color/colorMainBg"
+            app:LinearGradientLayerIsHorizontal="false" />
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_below="@id/my_article_banner"
+            android:id="@+id/article_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="8dp"
+                android:background="@color/colorMainBg"
+                android:paddingBottom="10dp"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/article_rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
 </RelativeLayout>
 </layout>

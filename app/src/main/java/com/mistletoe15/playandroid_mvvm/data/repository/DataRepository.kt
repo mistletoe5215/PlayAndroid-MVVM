@@ -46,13 +46,14 @@ class DataRepository private constructor() {
     fun getHomeBannerList(mHomeBannerViewModel: HomeBannerViewModel){
         mHomeBannerViewModel.viewModelScope.launch {
             try {
+                throw Exception("test")
                 val data = withContext(Dispatchers.IO) {
                     RetrofitFactory.instance.getService(ApiService::class.java)
                         .getHomeBannerList().handled()
                 }
                 mHomeBannerViewModel.bannerList.value = data
             } catch (e: Exception) {
-                e.printStackTrace()
+                mHomeBannerViewModel.errorMessage.value =  e.message
                 Log.i("请求失败", "${e.message}")
             }
         }

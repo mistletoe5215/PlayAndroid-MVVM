@@ -52,19 +52,19 @@ class MyHomeFragment : Fragment(){
             }
     }
     private fun initView(){
-        myHomeVideoViewModel = ViewModelProvider(this).get(MyHomeVideoViewModel::class.java)
-        myHomeVideoViewModel.initAndSetVideoConfig()
-        myHomeVideoViewModel.homeVideoConfig.observe(viewLifecycleOwner, Observer {
-           my_home_video_view.apply {
-               setVideoPath(it.videoPath)
-               start()
-               setOnPreparedListener {
-                   it.setVolume(0f,0f)
-               }
-               setOnCompletionListener {
-                   start()
-               }
-           }
-        })
+//        myHomeVideoViewModel = ViewModelProvider(this).get(MyHomeVideoViewModel::class.java)
+//        myHomeVideoViewModel.initAndSetVideoConfig()
+//        myHomeVideoViewModel.homeVideoConfig.observe(viewLifecycleOwner, Observer {
+//           my_home_video_view.apply {
+//               setVideoPath(it.videoPath)
+//               start()
+//               setOnPreparedListener {
+//                   it.setVolume(0f,0f)
+//               }
+//               setOnCompletionListener {
+//                   start()
+//               }
+//           }
+//        })
     }
 }
