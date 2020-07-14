@@ -2,7 +2,6 @@ package com.mistletoe15.playandroid_mvvm.ui.widget
 
 import android.widget.LinearLayout
 import android.content.Context
-import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.Gravity
@@ -32,7 +31,7 @@ class LoadingFailedView:LinearLayout{
         return this
     }
     fun setOnRetryAction(onRetryAction:OnRetryAction):LoadingFailedView{
-        tvText?.setOnClickListener {
+       setOnClickListener {
             onRetryAction()
         }
         return this
@@ -50,7 +49,7 @@ class LoadingFailedView:LinearLayout{
         img?.layoutParams = imgLp
         val tvLp =  LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         tvLp.topMargin  =  DeviceUtil.dip2px(context, 50f)
-        tvText?.setTextAppearance(context,R.style.text_medium_size_bold_33)
+        tvText?.setTextAppearance(context,R.style.text_medium_size_bold_blue)
         tvText?.layoutParams = tvLp
         addView(img)
         addView(tvText)

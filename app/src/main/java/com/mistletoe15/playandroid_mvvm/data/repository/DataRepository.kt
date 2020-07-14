@@ -1,7 +1,6 @@
 package com.mistletoe15.playandroid_mvvm.data.repository
 
 import android.content.Context
-import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.viewModelScope
@@ -13,6 +12,7 @@ import com.mistletoe15.playandroid_mvvm.data.net.RetrofitFactory
 import com.mistletoe15.playandroid_mvvm.data.net.handled
 import com.mistletoe15.playandroid_mvvm.vm.HeaderViewModel
 import com.mistletoe15.playandroid_mvvm.vm.HomeBannerViewModel
+import com.mistletoe15.playandroid_mvvm.vm.HomeTopRankViewModel
 import com.mistletoe15.playandroid_mvvm.vm.MyHomeVideoViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,7 +46,6 @@ class DataRepository private constructor() {
     fun getHomeBannerList(mHomeBannerViewModel: HomeBannerViewModel){
         mHomeBannerViewModel.viewModelScope.launch {
             try {
-                throw Exception("test")
                 val data = withContext(Dispatchers.IO) {
                     RetrofitFactory.instance.getService(ApiService::class.java)
                         .getHomeBannerList().handled()
@@ -54,6 +53,19 @@ class DataRepository private constructor() {
                 mHomeBannerViewModel.bannerList.value = data
             } catch (e: Exception) {
                 mHomeBannerViewModel.errorMessage.value =  e.message
+                Log.i("请求失败", "${e.message}")
+            }
+        }
+    }
+    fun getHomeTopRankArticleList(mHomeTopRankViewModel: HomeTopRankViewModel){
+        mHomeTopRankViewModel.viewModelScope.launch {
+            try {
+                val data  = withContext(Dispatchers.IO){
+                    RetrofitFactory.instance.getService(ApiService::class.java).getTopRankArticles().handled()
+                }
+                mHomeTopRankViewModel.topRankArticleList.value = data
+            }catch (e:Exception){
+                mHomeTopRankViewModel.errorMessage.value = e.message
                 Log.i("请求失败", "${e.message}")
             }
         }
