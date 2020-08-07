@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mistletoe15.playandroid_mvvm.data.bean.HomeBannerModel
 import com.mistletoe15.playandroid_mvvm.ui.activity.WebViewPage
 import com.mistletoe15.playandroid_mvvm.utils.ViewUtil.getHttpBitmap
-import com.mistletoe15.playandroid_mvvm.utils.doAsyncJobThen2UI
+import com.mistletoe15.playandroid_mvvm.utils.doAsyncTasksThen2Main
 import com.youth.banner.adapter.BannerAdapter
 /**
  * Created by Mistletoe on 2020/6/2
@@ -29,9 +29,10 @@ class BannerImageAdapter(dataList:List<HomeBannerModel>?) : BannerAdapter<HomeBa
 
     override fun onBindView(holder: BannerViewHolder?, data: HomeBannerModel?, position: Int, size: Int) {
         var bmp:Bitmap? = null
-        doAsyncJobThen2UI({
+        doAsyncTasksThen2Main({
             bmp = getHttpBitmap(data?.imagePath)
-        },{
+            bmp!=null
+        },mainBlock = {
             (holder?.itemView as ImageView).apply {
                 setImageBitmap(bmp)
                  val intent = Intent(context,  WebViewPage::class.java).apply {
