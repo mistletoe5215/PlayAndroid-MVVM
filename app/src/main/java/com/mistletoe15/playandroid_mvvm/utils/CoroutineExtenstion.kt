@@ -53,6 +53,30 @@ infix fun <T> Deferred<T>.then(block: suspend (T) -> Unit): Job {
         }
     }
 }
+typealias IOBlockLike = ()->Boolean
+typealias MainBlockLike = ()->Unit
+@ExperimentalCoroutinesApi
+fun ArrayList<IOBlockLike>.doIOFlowTask(certainDispatcher:CoroutineDispatcher,mainBlock: MainBlockLike){
+    var taskIndex =  0
+    val taskResultList:ArrayList<Boolean> = ArrayList()
+    fun convert2FlowTask() = flow {
+        forEach{
+            emit(it())
+            taskIndex++
+        }
+    }.flowOn(Dispatchers.IO)
+    CoroutineScope(certainDispatcher+ Job()).launch {
+        convert2FlowTask().buffer().onCompletion {  if (it != null) logd{"===Flow Task completed==="} }
+            .catch { loge(it){"===Catch Exception==="} }
+            .collect{
+                taskResultList.add(it)
+                logd { "Receive IOFlowTask$taskIndex result:$it" }
+            }
+        withContext(Dispatchers.Main){
+            if(taskResultList.all { true })  mainBlock.invoke()
+        }
+    }
+}
 private lateinit var mExceptionHandler : CoroutineExceptionHandler
 fun doAsyncTasksThen2Main(mScope:CoroutineScope,vararg ioBlocks:() -> Boolean,
                           mainBlock:() -> Unit,
