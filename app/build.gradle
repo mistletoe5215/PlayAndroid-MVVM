@@ -66,4 +66,6 @@ dependencies {
     //Android paging架构
     implementation 'androidx.paging:paging-runtime:2.1.2'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    //coroutine 扩展库
+    implementation 'com.github.mistletoe5215:CoroutineExtension:v1.3.0'
 }
