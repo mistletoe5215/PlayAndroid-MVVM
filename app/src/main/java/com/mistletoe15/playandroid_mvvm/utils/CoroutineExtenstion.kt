@@ -1,14 +1,17 @@
-package com.bilibili.suiseiseki.util
+package com.mistletoe15.playandroid_mvvm.utils
 /**
  * Created by mistletoe
  * on 2020/8/6
  **/
+import android.util.Log
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
+import kotlinx.coroutines.flow.*
+
 // Quick & dirty logcat extensions
 inline fun <reified T> T.logd(message: () -> String) = Log.d(T::class.simpleName, message())
 
@@ -56,7 +59,7 @@ infix fun <T> Deferred<T>.then(block: suspend (T) -> Unit): Job {
 typealias IOBlockLike = ()->Boolean
 typealias MainBlockLike = ()->Unit
 @ExperimentalCoroutinesApi
-fun ArrayList<IOBlockLike>.doIOFlowTask(certainDispatcher:CoroutineDispatcher,mainBlock: MainBlockLike){
+fun ArrayList<IOBlockLike>.doIOFlowTask(certainDispatcher:CoroutineDispatcher, mainBlock: MainBlockLike){
     var taskIndex =  0
     val taskResultList:ArrayList<Boolean> = ArrayList()
     fun convert2FlowTask() = flow {

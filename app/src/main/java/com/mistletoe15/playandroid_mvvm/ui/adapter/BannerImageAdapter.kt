@@ -11,6 +11,8 @@ import com.mistletoe15.playandroid_mvvm.ui.activity.WebViewPage
 import com.mistletoe15.playandroid_mvvm.utils.ViewUtil.getHttpBitmap
 import com.mistletoe15.playandroid_mvvm.utils.doAsyncTasksThen2Main
 import com.youth.banner.adapter.BannerAdapter
+import kotlinx.coroutines.GlobalScope
+
 /**
  * Created by Mistletoe on 2020/6/2
  **/
@@ -29,7 +31,7 @@ class BannerImageAdapter(dataList:List<HomeBannerModel>?) : BannerAdapter<HomeBa
 
     override fun onBindView(holder: BannerViewHolder?, data: HomeBannerModel?, position: Int, size: Int) {
         var bmp:Bitmap? = null
-        doAsyncTasksThen2Main({
+        doAsyncTasksThen2Main(GlobalScope,{
             bmp = getHttpBitmap(data?.imagePath)
             bmp!=null
         },mainBlock = {
